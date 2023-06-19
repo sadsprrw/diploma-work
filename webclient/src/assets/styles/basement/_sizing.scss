@@ -1,0 +1,56 @@
+/* -------------------------- HEADER SIZES -------------------------- */
+$rs-toolbar-height: 60px;
+$rs-subheader-height: 70px;
+
+/* -------------------------- SELECTION COMPONENT SIZES -------------------------- */
+/*Checkbox, RadioBox, etc...*/
+$rs-selection-component-size: 16px;
+$rs-selection-mark-size: 2px;
+
+/* -------------------------- DATA RELATED SIZES -------------------------- */
+//$rs-data-row-height: get('grid.lineHeight');
+$rs-discrete-label: 30px;
+
+/* -------------------------- ICON SIZES -------------------------- */
+$rs-icon-default-font-size: 30px;
+
+/* -------------------------- INPUTS -------------------------- */
+$rs-default-search-input-width: 250px;
+$rs-large-search-input-width: 350px;
+$rs-default-input-height: 40px;
+$rs-default-tall-input-height: 40px;
+$rs-default-search-input-stroke-size: 1px;
+$rs-min-action-input-width: 150px;
+$rs-small-min-action-input-width: 70px;
+$rs-box-shadow-height: 10px;
+
+/* -------------------------- BORDER -------------------------- */
+
+$rs-selection-border-width: 2px;
+
+$rs-default-border-radius: 5px;
+$rs-input-border-radius: 20px;
+$rs-popup-border-radius: 5px;
+$rs-button-border-radius: 5px;
+
+/* -------------------------- RESIZER -------------------------- */
+
+$rs-vertical-panel-resizer-width: 60px;
+
+/* -------------------------- POPOVER -------------------------- */
+$rs-popover-max-width: 400px;
+$rs-arrow-size: 10px;
+$rs-dropdown-min-width: 300px;
+
+/* -------------------------- MODAL SIZES -------------------------- */
+
+$rs-modal-footer-height: 70px;
+
+/* -------------------------- VERTICAL NAVIGATION -------------------------- */
+
+$rs-vertical-navigation-bar-width: 60px;
+$rs-vertical-navigation-bar-expanded-width: 200px;
+
+/* -------------------------- VERTICAL NAVIGATION -------------------------- */
+$rs-control-bar-height: 110px;
+$rs-control-bar-expanded-height: 200px;

@@ -1,0 +1,73 @@
+{
+  "name": "webclient",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "axios": "^0.21.4",
+    "axios-retry": "^3.3.1",
+    "core-js": "^3.23.5",
+    "lodash": "^4.17.21",
+    "sass": "^1.55.0",
+    "sass-loader": "^13.0.2",
+    "vue": "^2.6.14",
+    "vue-axios": "^2.1.5",
+    "vue-class-component": "^7.2.3",
+    "vue-infinite-loading": "^2.4.5",
+    "vue-loader": "^15.9.8",
+    "vue-loading-overlay": "^3.4.2",
+    "vue-multiselect": "^2.1.7",
+    "vue-property-decorator": "^9.1.2",
+    "vue-router": "^3.5.4",
+    "vuex": "^3.6.2",
+    "vuex-class": "^0.3.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.16",
+    "@babel/eslint-parser": "^7.12.16",
+    "@types/lodash": "^4.14.191",
+    "@types/vue": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-eslint": "~5.0.0",
+    "@vue/cli-plugin-typescript": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "@vue/eslint-config-typescript": "^9.1.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-vue": "^8.0.3",
+    "typescript": "=4.7.4",
+    "vue-class-component": "^7.2.3",
+    "vue-property-decorator": "^9.1.2",
+    "vue-template-compiler": "=2.6.14",
+    "vuex-module-decorators": "^1.2.0"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/vue3-essential",
+      "eslint:recommended",
+      "@vue/typescript"
+    ],
+    "parserOptions": {
+      "parser": "@typescript-eslint/parser"
+    },
+    "rules": {
+      "no-unused-vars": "off",
+      "no-useless-escape": "off"
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ]
+}

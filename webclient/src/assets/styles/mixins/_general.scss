@@ -1,0 +1,85 @@
+@mixin text-overflow() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin centerTransformXY() {
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+}
+
+@mixin property-opacity($property, $color, $opacity: 0.3) {
+  #{$property}: $color; /* The Fallback */
+  #{$property}: rgba($color, $opacity);
+}
+
+@mixin space-container($space) {
+  > * {
+    margin-left: $space;
+    margin-right: $space;
+
+    &:first-of-type {
+      margin-left: 0;
+    }
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+
+    // Incase only two children
+    &:last-of-type:nth-child(2) {
+      margin-left: 0;
+    }
+  }
+}
+
+@mixin statusModifiers($base-color, $apply-hover-state: true) {
+  background-color: $base-color;
+  color: $rs-color-text-accent;
+
+  @if $apply-hover-state == true {
+    &:hover {
+      background-color: mix($rs-light-modifier, $base-color, $rs-hover-modifier-percent);
+    }
+
+    &:active {
+      background-color: mix($rs-dark-modifier, $base-color, $rs-active-modifier-percent);
+    }
+  }
+}
+
+@mixin disabledModifiers($base-color) {
+  @include property-opacity(color, $rs-color-text-accent, $rs-disabled-opacity);
+  background-color: mix($rs-dark-modifier, $base-color, $rs-disabled-modifier-percent);
+
+  &, &:hover, &:disabled {
+    background-color: mix($rs-dark-modifier, $base-color, $rs-disabled-modifier-percent);
+  }
+}
+
+@mixin showInternalOnHover($internal-component-selector) {
+  #{$internal-component-selector} {
+    transition: opacity .3s ease;
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  &:hover {
+    #{$internal-component-selector} {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}
+
+@mixin visible() {
+  visibility: visible;
+  opacity: 1;
+}
+
+@mixin hidden() {
+  visibility: hidden;
+  opacity: 0;
+}

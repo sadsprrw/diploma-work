@@ -1,0 +1,234 @@
+@import "src/assets/styles/basement/_var.scss";
+@import "src/assets/styles/basement/_transitions.scss";
+
+.rs-loading-dots:after {
+  content: ' .';
+  animation: dots 1s steps(5, end) infinite;
+}
+
+@keyframes dots {
+  0%, 20% {
+    color: rgba(0, 0, 0, 0);
+    text-shadow: .25em 0 0 rgba(0, 0, 0, 0),
+    .5em 0 0 rgba(0, 0, 0, 0);
+  }
+  40% {
+    color: white;
+    text-shadow: .25em 0 0 rgba(0, 0, 0, 0),
+    .5em 0 0 rgba(0, 0, 0, 0);
+  }
+  60% {
+    text-shadow: .25em 0 0 white,
+    .5em 0 0 rgba(0, 0, 0, 0);
+  }
+  80%, 100% {
+    text-shadow: .25em 0 0 white,
+    .5em 0 0 white;
+  }
+}
+
+.rs--animate-max-height {
+  overflow: hidden;
+  max-height: 0;
+  transform: scale(1, 0);
+  transition: all 0.3s ease;
+  transform-origin: top left;
+
+  &.active {
+    max-height: 10em;
+    overflow: auto;
+    transform: scale(1, 1);
+  }
+}
+
+.rs-animate-opacity.ng-enter,
+.rs-animate-opacity.ng-leave {
+  @include cubic-transition(all, 0.3s);
+}
+
+.rs-animate-opacity.ng-enter {
+  opacity: 0;
+}
+
+.rs-animate-opacity.ng-leave,
+.rs-animate-opacity.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+
+.rs-animate-opacity.ng-leave.ng-leave-active {
+  opacity: 0;
+}
+
+/*ANIMATION OF APPEARNCE AND OPACITY*/
+
+.rs-animate-opacity-appearance.ng-enter,
+.rs-animate-opacity-appearance.ng-leave {
+  @include cubic-transition(all, 0.3s);
+}
+
+.rs-animate-opacity-appearance.ng-enter {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.rs-animate-opacity-appearance.ng-leave,
+.rs-animate-opacity-appearance.ng-enter.ng-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+
+  //position: absolute;
+}
+
+.rs-animate-opacity-appearance.ng-leave.ng-leave-active {
+  transform: translateX(100%);
+  position: absolute;
+  opacity: 0;
+}
+
+// SLIDE FROM RIGHT
+.rs-animate-slide-from-right.ng-enter,
+.rs-animate-slide-from-right.ng-leave {
+  @include cubic-transition(all, 0.4s);
+}
+
+.rs-animate-slide-from-right.ng-enter {
+  transform: translateX(100%);
+}
+
+.rs-animate-slide-from-right.ng-leave,
+.rs-animate-slide-from-right.ng-enter.ng-enter-active {
+  transform: translateX(0);
+
+  //position: absolute;
+}
+
+.rs-animate-slide-from-right.ng-leave.ng-leave-active {
+  transform: translateX(100%);
+  position: absolute;
+}
+
+// SLIDE FROM BOTTOm
+.rs-animate-slide-from-bottom.ng-enter,
+.rs-animate-slide-from-bottom.ng-leave {
+  @include cubic-transition(all, 0.25s);
+}
+
+.rs-animate-slide-from-bottom.ng-enter {
+  transform: translateY(100px) scale(0);
+}
+
+.rs-animate-slide-from-bottom.ng-leave,
+.rs-animate-slide-from-bottom.ng-enter.ng-enter-active {
+  transform: translateY(0) scale(1);
+
+  //position: absolute;
+}
+
+.rs-animate-slide-from-bottom.ng-leave.ng-leave-active {
+  transform: translateY(100px) scale(0);
+}
+
+// EXPANDED
+.rs-animate-expand.ng-enter,
+.rs-animate-expand.ng-leave {
+  @include transition(0.3s all);
+}
+
+.rs-animate-expand.ng-enter {
+  max-height: 0;
+}
+
+.rs-animate-expand.ng-enter.ng-enter-active {
+  overflow: hidden;
+}
+
+.rs-animate-expand.ng-leave,
+.rs-animate-expand.ng-enter.ng-enter-active {
+  max-height: 400px;
+}
+
+.rs-animate-expand.ng-leave.ng-leave-active {
+  max-height: 0;
+  overflow: hidden;
+}
+
+// EXPANDED small
+.rs-animate-expand-small.ng-enter,
+.rs-animate-expand-small.ng-leave {
+  @include transition(0.3s all);
+}
+
+.rs-animate-expand-small.ng-enter {
+  max-height: 0;
+}
+
+.rs-animate-expand-small.ng-leave,
+.rs-animate-expand-small.ng-enter.ng-enter-active {
+  max-height: 100px;
+}
+
+.rs-animate-expand-small.ng-leave.ng-leave-active {
+  max-height: 0;
+}
+
+.rs-bounce {
+  animation-name: bounce;
+  animation-timing-function: cubic-bezier(0.280, 0.840, 0.420, 1);
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(1, 1) translateY(0);
+  }
+  10% {
+    transform: scale(1.1, .9) translateY(0);
+  }
+  30% {
+    transform: scale(.9, 1.1) translateY(-20px);
+  }
+  50% {
+    transform: scale(1.05, .95) translateY(0);
+  }
+  57% {
+    transform: scale(1, 1) translateY(-7px);
+  }
+  64% {
+    transform: scale(1, 1) translateY(0);
+  }
+  100% {
+    transform: scale(1, 1) translateY(0);
+  }
+}
+
+@for $index from 1 through length(map_keys($rs-statuses-palette)) {
+  $palette-name: nth(map_keys($rs-statuses-palette), $index);
+  $palette-color: nth(map_get($rs-statuses-palette, $palette-name), 1);
+
+  @keyframes pulse-#{$palette-name} {
+    0%, 20% {
+      background-color: $palette-color;
+    }
+    50% {
+      background-color: $rs-animation-modifier;
+    }
+    80%, 100% {
+      background-color: $palette-color;
+    }
+  }
+
+  @keyframes pulse-color-#{$palette-name} {
+    0%, 20% {
+      color: $palette-color;
+    }
+    50% {
+      color: $rs-animation-modifier;
+    }
+    80%, 100% {
+      color: $palette-color;
+    }
+  }
+}
+
+

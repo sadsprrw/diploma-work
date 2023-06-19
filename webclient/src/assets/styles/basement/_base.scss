@@ -1,0 +1,45 @@
+@import "var";
+@import "sizing";
+
+body {
+  height: 100vh;
+  font-family: $rs-font-family;
+  margin: 0;
+  padding: 0;
+  background-color: var(--base-color);
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-family: $rs-font-family;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  color: $rs-color-text-primary;
+}
+
+
+p{
+  text-shadow: none;
+  color: var(--text-color);
+}
+
+[class^="fa-"], [class^="fas "] {
+  font-size: $rs-icon-default-font-size;
+}
+
+input, textarea {
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  border: none;
+}

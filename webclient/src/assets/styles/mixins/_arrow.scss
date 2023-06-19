@@ -1,0 +1,15 @@
+@mixin pseudo-arrow($arrowSize) {
+  &::before {
+    right: 50%;
+    margin-right: -$arrowSize;
+    bottom: -$arrowSize;
+    content: "";
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: $arrowSize $arrowSize 0 $arrowSize;
+    border-color: $rs-color-surface-top transparent transparent transparent !important;
+  }
+}

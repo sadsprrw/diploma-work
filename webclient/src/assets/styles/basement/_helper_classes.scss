@@ -1,0 +1,646 @@
+@import "../mixins/bem";
+@import "../mixins/general";
+@import "var";
+@import "spacing";
+@import "sizing";
+@import "transitions";
+@import "typography";
+@import "animations";
+@import "depth";
+
+/*STATUS COLORS*/
+.rs-success {
+  color: $rs-color-success;
+}
+
+.rs-error {
+  color: $rs-color-error;
+}
+
+.rs-warning {
+  color: $rs-color-warning;
+}
+
+.rs-primary {
+  color: $rs-color-primary;
+}
+
+.rs-favorite {
+  color: $rs-color-warning;
+}
+
+.rs-secondary-text {
+  color: $rs-color-text-secondary;
+}
+
+.rs-primary-text {
+  color: $rs-color-text-primary;
+}
+
+.rs-accent-text {
+  color: $rs-color-text-accent;
+}
+
+.rs-color-white {
+  color: #fff;
+}
+
+/*
+Color schema colors
+ */
+
+$rs-color-schema-green: #E0BF6C;
+$rs-color-schema-blue: #00B0FF;
+
+$color-schema: (
+        'green': $rs-color-schema-green,
+        'blue': $rs-color-schema-blue,
+        'violet': #711FEA,
+        'pink': #B358D1,
+        'purple': #B42D7B,
+        'red': #FD6E79,
+        'orange': #FC9C47
+);
+
+@each $name, $color in $color-schema {
+  .rs-color-schema-#{$name} {
+    color: $color;
+  }
+}
+
+/*CONTAINERS*/
+@include b(content-container) {
+  padding-left: $rs-spacing-regular;
+  padding-right: $rs-spacing-regular;
+}
+
+.rs-flex {
+  display: flex;
+
+  @include m(vertical-center) {
+    display: flex;
+    align-items: center;
+  }
+
+  @include m(horizontal-center) {
+    display: flex;
+    justify-content: center;
+  }
+
+  @include m(all-center) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @include m(vertical-baseline) {
+    display: flex;
+    align-items: baseline;
+  }
+
+  @include m(justify-start) {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  @include m(justify-end) {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  @include m(justify-space-between) {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @include m(justify-space-around) {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  @include m(column) {
+    display: flex;
+    flex-direction: column;
+    > * {
+      line-height: 1.3;
+    }
+  }
+
+  @include m(column-pure) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @include m(wrap) {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  @include m(grow) {
+    display: flex;
+    flex-grow: 1;
+  }
+}
+
+@include b(header-label) {
+  font-size: $rs-font-size-header-action;
+  font-weight: bold;
+}
+
+@include b(vertical-inline-container) {
+  margin-bottom: 0;
+
+  > * {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+/*This modifier is also used outside this context. For example, a
+  .ag-row-hover applies visibility for these types of elements.*/
+.rs-visible-on-hover {
+  opacity: 0;
+  visibility: hidden;
+  @include transition-delay(0.2s);
+  @include transition(opacity $rs-expand-transition-length);
+
+  &:hover {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.rs-bold {
+  font-weight: bold;
+}
+
+.rs-medium {
+  font-weight: $rs-font-weight-bold;
+}
+
+.rs-draft {
+  font-weight: $rs-color-draft;
+}
+
+.rs-small {
+  font-size: $rs-font-size-h6;
+}
+
+.rs-size-h5 {
+  font-size: $rs-font-size-h5;
+}
+
+.rs-visible-off {
+  color: $rs-color-surface-base;
+}
+
+.rs-text-underline {
+  text-decoration: underline;
+}
+
+.rs-y-overflow {
+  max-height: 75vh;
+  overflow-y: auto;
+
+  @include m(h100) {
+    max-height: none;
+    height: 100%;
+    overflow-y: auto;
+  }
+}
+
+.rs-y-overflow-auto {
+  overflow-y: auto;
+}
+
+.rs-break-word-overflow-wrap {
+  overflow-wrap: break-word;
+}
+
+.rs-word-break {
+  word-break: break-word;
+}
+
+.rs-break-all {
+  word-break: break-all;
+}
+
+.rs-auto-width {
+  width: auto;
+}
+
+.rs-full-width {
+  width: 100%;
+}
+
+@for $i from 5 through 100 {
+  .rs-width-#{$i} {
+    width: #{$i + '%'};
+  }
+}
+
+@for $i from 5 through 100 {
+  .rs-height-#{$i} {
+    height: #{$i + '%'};
+  }
+}
+
+@for $i from 1 through 20 { // width: 50px - 1000px;
+  $size: $i * 50;
+  .rs-width-px-#{$size} {
+    width: #{$size + 'px'};
+  }
+  .rs-height-px-#{$size} {
+    height: #{$size + '%'};
+  }
+}
+
+.rs-full-height {
+  height: 100%;
+}
+
+.rs-third-screen-width {
+  max-width: 30vw;
+}
+
+.rs-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rs-no-wrap {
+  // overflow: hidden;
+  // width: 100%;
+  white-space: nowrap;
+  // text-align: left;
+}
+
+.rs-z-base {
+  z-index: $rs-z-base;
+}
+
+.rs-no-padding {
+  padding: 0 !important;
+}
+
+.rs-no-padding-children {
+  * {
+    padding: 0 !important;
+  }
+}
+
+.rs-no-background-color {
+  background-color: transparent !important;
+}
+
+.rs-no-border {
+  * {
+    border: none !important;
+  }
+}
+
+.rs-regular-line-height {
+  * {
+    line-height: 1 !important;
+  }
+}
+
+.rs-invisible {
+  visibility: hidden;
+}
+
+.rs-hidden {
+  @include hidden();
+}
+
+.rs-visible {
+  @include visible();
+}
+
+.snippet-term {
+  color: $rs-color-schema-green;
+}
+
+.snippet-query {
+  color: white;
+}
+
+.snippet-search-term {
+  color: $rs-color-schema-blue;
+}
+
+.snippet-context-term {
+  color: darkgray;
+}
+
+.snippet-search-filter {
+  color: rgba($rs-color-warning, 1);
+}
+
+.rs-highlight-search {
+  color: $rs-color-warning;
+}
+
+.snippet-entity {
+  &--selected {
+    padding: 0 2px;
+    background-color: rgba($rs-color-warning, 0.25);
+    font-weight: $rs-font-weight-bold;
+    color: white;
+  }
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.positive-term {
+  color: #27C97B;
+}
+
+.negative-term {
+  color: #eb5570;
+}
+
+.rs-right-text {
+  text-align: right;
+}
+
+.spacer {
+  flex-grow: 1;
+}
+
+.rs-loader-ellipsis {
+  &:after {
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: bottom;
+    -webkit-animation: ellipsis steps(4,end) 1200ms infinite;
+    animation: ellipsis steps(4,end) 1200ms infinite;
+    content: "\2026";
+    width: 0;
+  }
+}
+@keyframes ellipsis {
+  to {
+    width: 1.25em;
+  }
+}
+
+.rs-demo-base {
+  font-size: $rs-font-size-demo;
+  color: #FFFFFF;
+
+  &__container {
+
+
+  }
+
+  &__input {
+
+    &-button {
+      transform: translateY(30px);
+    }
+  }
+}
+
+.rs-demo-secondary {
+  font-size: $rs-font-size-demo;
+  color: #FFFFFF;
+
+  &__container {
+
+
+  }
+
+  &__input {
+
+    &-button {
+      transform: translateY(30px);
+    }
+  }
+}
+
+//
+// Position relative, when it's needed
+//
+.rs-position-relative {
+  position: relative !important;
+}
+
+//
+// Position absolute, when it's needed
+//
+.rs-position-absolute {
+  position: absolute !important;
+}
+
+//
+// Font sizes from 10 to 32 pixels
+//
+@for $i from 10 through 32 {
+  .rs-font-size-#{$i} {
+    font-size: #{$i}px !important;
+  }
+}
+$rs-font-size: initial, medium, small;
+@each $size in $rs-font-size {
+  .rs-font-size-#{$size} {
+    font-size: #{$size} !important;
+  }
+}
+
+//
+// Opacities
+//
+$opacities: (0: "0", 1: "01", 2: "02", 3: "03", 4: "04", 5: "05", 6: "06", 7: "07", 8: "08", 9: "09", 10: "1");
+@for $i from 0 through 10 {
+  $name: map_get($opacities, $i);
+  .rs-opacity-#{$name} {
+    opacity: #{calc(#{$i} / 10)} !important;
+  }
+}
+
+
+//
+// Display properties
+//
+$display-properties:
+  /* <display-outside> values */
+        block,
+        inline,
+          //run-in,
+          /* <display-inside> values */
+          //flow,
+          //flow-root,
+          //table,
+        flex,
+          //grid,
+          //ruby,
+          /* <display-outside> plus <display-inside> values */
+          //'block flow',
+          //'inline table',
+          //'flex run-in',
+          /* <display-listitem> values */
+          //list-item,
+          //'list-item block',
+          //'list-item inline',
+          //'list-item flow',
+          //'list-item flow-root',
+          //'list-item block flow',
+          //'list-item block flow-root',
+          //'flow list-item block',
+          /* <display-internal> values */
+          //table-row-group,
+          //table-header-group,
+          //table-footer-group,
+          //table-row,
+          //table-cell,
+          //table-column-group,
+          //table-column,
+          //table-caption,
+          //ruby-base,
+          //ruby-text,
+          //ruby-base-container,
+          //ruby-text-container,
+          /* <display-box> values */
+          //contents,
+        none,
+          /* <display-legacy> values */
+        inline-block,
+          //inline-table,
+        inline-flex;
+//inline-grid,
+/* Global values */
+//inherit,
+//initial,
+//unset;
+
+@each $display in $display-properties {
+  .rs-display-#{$display} {
+    display: #{$display} !important;
+  }
+}
+
+//
+// Global style for chart imaging
+//
+.rs-chart-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+//
+// Font weights
+//
+$rs-weights:
+  /* Keyword values */
+        normal,
+        bold,
+          /* Keyword values relative to the parent */
+        lighter,
+        bolder,
+          /* Numeric keyword values */
+        100, 200, 300,
+        400, // normal
+        500, 600,
+        700, // bold
+        800, 900,
+          /* Global values */
+        inherit,
+        initial,
+        revert;
+
+@each $weight in $rs-weights {
+  .rs-font-weight-#{$weight} {
+    font-weight: #{$weight} !important;
+  }
+}
+
+//
+// Cursor
+//
+$rs-cursor-properties:
+  /* General */
+        auto,
+        default,
+        none,
+          /* Links & status */
+        context-menu,
+        help,
+        pointer,
+        progress,
+        wait,
+          /* Selection */
+        cell,
+        crosshair,
+        text,
+        vertical-text,
+          /* Drag & drop */
+        alias,
+        copy,
+        move,
+        no-drop,
+        not-allowed,
+        grab,
+        grabbing,
+          /* Resizing & scrolling */
+        all-scroll,
+        col-resize,
+        row-resize,
+        n-resize,
+        e-resize,
+        s-resize,
+        w-resize,
+        ne-resize,
+        nw-resize,
+        se-resize,
+        sw-resize,
+        ew-resize,
+        ns-resize,
+        nesw-resize,
+        nwse-resize,
+          /* Zooming */
+        zoom-in,
+        zoom-out;
+@each $cursor in $rs-cursor-properties {
+  .rs-cursor-#{$cursor} {
+    cursor: #{$cursor} !important;
+  }
+}
+
+
+//
+// Floating
+//
+$rs-float-properties: left, right, none, inherit;
+@each $float in $rs-float-properties {
+  .rs-float-#{$float} {
+    float: #{$float} !important;
+  }
+}
+
+//
+// For disabled elements
+//
+.rs-disabled {
+  opacity: $rs-disabled-opacity;
+}
+
+//
+// Highlight elements
+//
+.rs-highlight-element {
+  border: 1px solid $rs-color-primary;
+  border-radius: $rs-button-border-radius;
+}
+
+.rs-no-min-width {
+  min-width: 0;
+}
+
+.rs-block-underline {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}

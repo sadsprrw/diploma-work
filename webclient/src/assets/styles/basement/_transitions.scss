@@ -1,0 +1,35 @@
+@import "var";
+
+$rs-expand-transition-length: $rs-default-transition;
+
+@mixin cubic-transition($length, $property) {
+  -webkit-transition: $property cubic-bezier(0.250, 0.460, 0.450, 0.940) $length;
+  -moz-transition: $property cubic-bezier(0.250, 0.460, 0.450, 0.940) $length;
+  -o-transition: $property cubic-bezier(0.250, 0.460, 0.450, 0.940) $length;
+  -ms-transition: $property cubic-bezier(0.250, 0.460, 0.450, 0.940) $length;
+  transition: $property cubic-bezier(0.250, 0.460, 0.450, 0.940) $length;
+}
+
+@mixin transition($transition...) {
+  -moz-transition: $transition;
+  -o-transition: $transition;
+  -webkit-transition: $transition;
+  transition: $transition;
+}
+
+@mixin transition-delay($delay...) {
+  -moz-transition-delay: $delay;
+  -o-transition-delay: $delay;
+  -webkit-transition-delay: $delay;
+  transition-delay: $delay;
+}
+
+@mixin hidden() {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@mixin visible() {
+  opacity: 1;
+  visibility: visible;
+}

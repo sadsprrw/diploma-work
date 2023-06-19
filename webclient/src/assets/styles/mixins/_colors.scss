@@ -1,0 +1,33 @@
+@function get-palette-list($color) {
+  @for $index from 1 through length(map_keys($rs-tabs-palettes)) {
+    $palette-name: nth(map_keys($rs-tabs-palettes), $index);
+
+    @if $color == $palette-name {
+      @return map_get($rs-tabs-palettes, $palette-name);
+    }
+  }
+  @return map_get($rs-tabs-palettes, "default");
+}
+
+@mixin get-palette-color($color: null) {
+  @if not $color {
+    color: $rs-color-text-primary;
+  } @else {
+    $palette: get-palette-list($color);
+    $palette-color: nth($palette, 1);
+
+    color: $palette-color;
+  }
+}
+
+@mixin get-palette-background($color: null) {
+  @if not $color {
+    background-color: rgba(35, 40, 54, 0.2);
+  } @else {
+    $palette: get-palette-list($color);
+    $palette-background: nth($palette, 2);
+
+    background-color: $palette-background;
+  }
+}
+

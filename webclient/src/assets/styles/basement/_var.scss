@@ -1,0 +1,117 @@
+$rs-color-primary: #9B1200ff !default;
+$rs-color-secondary: #9B1200ff !default;
+$rs-color-selected: rgba($rs-color-secondary, 0.3);
+
+/* Statuses */
+$rs-color-success: #27C97B !default;
+$rs-color-warning: #FAC12CFF !default;
+$rs-color-error: #eb5570 !default;
+$rs-color-draft: #666666 !default;
+$rs-color-running: #7497D1 !default;
+$rs-color-creating: #EE9DA4 !default;
+
+
+/* Surface */
+$rs-color-surface-bottom: #1a110c !default;
+$rs-color-surface-base: darken(#232836, 10%) !default;
+$rs-color-surface-front: #151313 !default;
+$rs-color-surface-top: #502a2a !default;
+
+
+$sinopia: #D53500ff;
+$spanish-orange: #EA6C13ff;
+$deep-saffron: #FA942Cff;
+$orange-yellow: #FAC12Cff;
+$yellow-pantone: #FADD2Cff;
+
+$international-orange-engineering: #B61800ff;
+$rufous: #9B1200ff;
+$barn-red: #750D00ff;
+$sinopia: rgb(213, 53, 0);
+$spanish-orange: rgb(235, 94, 0);
+
+/* border */
+
+$rs-border-width: 1px;
+$rs-border-color: rgba(0, 0, 0, 0.2);
+$rs-input-border: $rs-border-width solid $rs-border-color;
+
+
+/* text */
+$rs-color-text-accent: #ffffff !default;
+$rs-color-text-disabled: rgba($rs-color-text-accent, 0.2);
+$rs-color-error-message: #ffffff;
+$rs-color-demo: #ffffff;
+
+/* modifiers */
+$rs-light-modifier: #ffffff !default;
+$rs-dark-modifier: #000000 !default;
+$rs-animation-modifier: #c9c426;
+$rs-hover-modifier-percent: 10% !default;
+$rs-active-modifier-percent: 20% !default;
+$rs-disabled-modifier-percent: 10% !default;
+$rs-disabled-opacity: 0.3;
+
+/* spacing */
+$spacing-multiplier: 5px;
+
+
+/* text */
+$rs-font-family: 'Raleway', sans-serif;
+$rs-font-size-base: 14px !default;
+$rs-font-size-demo: 18px;
+$rs-font-size-demo-secondary: 16px;
+$rs-font-size-p: $rs-font-size-demo !default;
+$rs-font-size-h1: 30px !default;
+$rs-font-size-h2: $rs-font-size-base !default;
+$rs-font-size-h3: $rs-font-size-base !default;
+$rs-font-size-h4: $rs-font-size-base !default;
+$rs-font-size-h5: 12px !default;
+$rs-font-size-h6: 10px !default;
+$rs-font-size-badge: 8px !default;
+$rs-font-size-header-action: $rs-font-size-h5 !default;
+
+$rs-font-weight-bold: 500 !default;
+$rs-font-weight-extra-bold: 700 !default;
+
+$rs-box-shadow-base: 0 2px 10px 0 rgba(0, 0, 0, 0.5) !default;
+
+$rs-color-text-primary: #FFF4F3FF;
+$rs-color-text-secondary: #bb9a98;
+
+/* size */
+$rs-top-bar-height: 80px;
+
+/* transitions */
+
+$rs-default-transition: .3s;
+
+/* palettes */
+$rs-statuses-palette: (
+        success: $rs-color-success,
+        warning: $rs-color-warning,
+        error: $rs-color-error,
+        draft: $rs-color-draft,
+        running: $rs-color-running,
+        creating: $rs-color-creating,
+        grid: #FA940AFF,
+);
+
+/* Tabs colors */
+$rs-tabs-palettes: (
+        'cyan': #86bcc9 rgba(91, 164, 183, 0.2),
+        'peach': #d0a7b0 rgba(191, 134, 147, 0.2),
+        'violet': #b593db rgba(153, 107, 207, 0.2),
+        'red': #C23E5B rgba(194, 62, 91, 0.2),
+        'default': $rs-color-text-primary $rs-color-surface-front,
+        'gray': $rs-color-surface-bottom $rs-color-text-secondary, //Grayish blue
+        'pigeon': #FFF4F3FF #bb9a98
+);
+
+$rs-shadow-palettes: (
+        'base': #410404FF,
+        'white': #fff,
+        'black': #000,
+        'yellow': $rs-color-warning
+);
+

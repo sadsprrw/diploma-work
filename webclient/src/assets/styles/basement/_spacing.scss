@@ -1,0 +1,103 @@
+@import "var";
+
+$rs-spacing-none: 0;
+$rs-spacing-extra-tight: $spacing-multiplier;
+$rs-spacing-tight: $spacing-multiplier * 2;
+$rs-spacing-regular: $spacing-multiplier * 3;
+$rs-spacing-base: $spacing-multiplier * 4;
+$rs-spacing-loose: $spacing-multiplier * 6;
+$rs-spacing-extra-loose: $spacing-multiplier * 8;
+
+$types: 'extra-loose' 'loose' 'base' 'regular' 'tight' 'extra-tight' 'none';
+$directions: 'top' 'right' 'bottom' 'left';
+$properties: margin, padding;
+$spacing-values: (
+        none: $rs-spacing-none,
+        extra-tight: $rs-spacing-extra-tight,
+        tight: $rs-spacing-tight,
+        regular: $rs-spacing-regular,
+        base: $rs-spacing-base,
+        loose: $rs-spacing-loose,
+        extra-loose: $rs-spacing-extra-loose
+);
+
+@for $i from 1 through length($types) {
+  $type: nth($types, $i);
+  // Margin
+  .rs-#{$type}-margin,
+  .rs-#{$type}-space {
+    margin: map_get($spacing-values, $type);
+
+    @for $j from 1 through length($directions) {
+      $direction: nth($directions, $j);
+      &-#{$direction} {
+        margin-#{$direction}: map_get($spacing-values, $type);
+      }
+    }
+  }
+  // Padding
+  .rs-#{$type}-padding {
+    padding: map_get($spacing-values, $type);
+
+    @for $j from 1 through length($directions) {
+      $direction: nth($directions, $j);
+      &-#{$direction} {
+        padding-#{$direction}: map_get($spacing-values, $type);
+      }
+    }
+  }
+}
+
+.rs-clear-padding {
+  padding: 0 !important;
+}
+
+.rs-no-margin {
+  margin: 0 !important;
+}
+
+.rs-clear-padding-margin {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+
+@each $property in $properties {
+  @for $i from 0 through 30 {
+    // Plus values
+    .rs-#{$property}-#{$i} {
+      #{$property}: #{$i}px !important;
+    }
+    .rs-#{$property}-vertical-#{$i} {
+      #{$property}-top: #{$i}px !important;
+      #{$property}-bottom: #{$i}px !important;
+    }
+    .rs-#{$property}-horizontal-#{$i} {
+      #{$property}-left: #{$i}px !important;
+      #{$property}-right: #{$i}px !important;
+    }
+    @each $direction in $directions {
+      .rs-#{$property}-#{$direction}-#{$i} {
+        #{$property}-#{$direction}: #{$i}px !important;
+      }
+    }
+
+    // Negative values
+    .rs-#{$property}-m#{$i} {
+      #{$property}: -#{$i}px !important;
+    }
+    .rs-#{$property}-vertical-m#{$i} {
+      #{$property}-top: -#{$i}px !important;
+      #{$property}-bottom: -#{$i}px !important;
+    }
+    .rs-#{$property}-horizontal-m#{$i} {
+      #{$property}-left: -#{$i}px !important;
+      #{$property}-right: -#{$i}px !important;
+    }
+    @each $direction in $directions {
+      .rs-#{$property}-#{$direction}-m#{$i} {
+        #{$property}-#{$direction}: -#{$i}px !important;
+      }
+    }
+  }
+}

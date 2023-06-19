@@ -1,0 +1,73 @@
+@import "var";
+
+h1 {
+  font-size: $rs-font-size-h1;
+  color: $rs-color-text-accent;
+}
+
+h2 {
+  font-size: $rs-font-size-h2;
+  font-weight: $rs-font-weight-bold;
+  color: $rs-color-text-accent;
+}
+
+h4 {
+  font-size: $rs-font-size-base;
+}
+
+h5 {
+  font-size: $rs-font-size-h5;
+  color: $rs-color-text-primary;
+  font-weight: $rs-font-weight-bold;
+}
+
+///
+/// For global usage
+///
+
+//
+// Text alignment
+//
+$rs-text-alignments: left, center, right;
+@each $align in $rs-text-alignments {
+  .rs-text-align-#{$align} {
+    text-align: #{$align} !important;
+  }
+}
+
+//
+// Text colors
+//
+$rs-text-colors: (
+        inherit: 'inherit',
+        success: $rs-color-success,
+        warning: $rs-color-warning,
+        error: $rs-color-error,
+        draft: $rs-color-draft,
+);
+
+@each $name, $color in $rs-text-colors {
+  .rs-color-#{$name} {
+    color: #{$color} !important;
+  }
+}
+
+//
+// Text transforms
+//
+$rs-text-transformations: lowercase, uppercase, capitalize, none;
+@each $transform in $rs-text-transformations {
+  .rs-text-transform-#{$transform} {
+    text-transform: #{$transform} !important;
+  }
+}
+
+//
+// White-space
+//
+$rs-white-space: normal, nowrap; // pre, pre-wrap, pre-line, break-spaces, inherit, initial, revert, unset;
+@each $space in $rs-white-space {
+  .rs-white-space-#{$space} {
+    white-space: #{$space} !important;
+  }
+}

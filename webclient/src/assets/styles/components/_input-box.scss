@@ -1,0 +1,94 @@
+@include b(input-box) {
+  display: flex;
+  align-items: center;
+  height: $rs-default-input-height;
+  transition: all $rs-expand-transition-length;
+  border: $rs-default-search-input-stroke-size solid transparent;
+  background-color: transparent;
+  border-radius: $rs-input-border-radius;
+  padding: 0 10px;
+
+  @include m(bordered) {
+    border: $rs-input-border;
+    background-color: $rs-color-surface-front;
+  }
+
+  @include m(tall) {
+    height: $rs-default-tall-input-height;
+  }
+
+  @include mm(bordered dark) {
+    background-color: $rs-color-surface-bottom;
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+      -webkit-box-shadow: inset 0 0 0 1000px $rs-color-surface-bottom;
+      -webkit-text-fill-color: $rs-color-text-primary !important;
+      caret-color: $rs-color-text-primary;
+    }
+  }
+
+  @include mm(bordered base) {
+    background-color: lighten($rs-color-surface-base, 5%);
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+      -webkit-box-shadow: inset 0 0 0 1000px $rs-color-surface-base;
+      -webkit-text-fill-color: $rs-color-text-primary !important;
+      caret-color: $rs-color-text-primary;
+    }
+  }
+
+  > span, input {
+    vertical-align: middle;
+  }
+
+  @include e(input) {
+    background-color: inherit;
+    color: $rs-color-text-primary;
+    outline: none;
+    width: 100%;
+    transition: all $rs-expand-transition-length;
+    font-size: $rs-font-size-p;
+
+  }
+
+  @include e(prefix-icon) {
+    font-size: 16px;
+  }
+
+  @include e(postfix-icon) {
+    position: absolute;
+    right: $rs-spacing-extra-tight;
+  }
+
+  @include e(error) {
+    margin: $rs-spacing-extra-tight 0 0;
+    color: $rs-color-error;
+    white-space: initial;
+  }
+
+  @include m(prefix) {
+    @include e(input) {
+      padding-left: $rs-spacing-extra-tight;
+    }
+  }
+
+  @include m(error) {
+    border: 1px solid $rs-color-error;
+  }
+
+  @include m(large) {
+    @include e(input) {
+      width: $rs-large-search-input-width;
+    }
+  }
+
+  @include m(disabled) {
+    opacity: $rs-disabled-opacity;
+  }
+}

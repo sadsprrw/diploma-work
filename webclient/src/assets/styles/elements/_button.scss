@@ -1,0 +1,376 @@
+@import "../basement/_animations.scss";
+@import "../basement/_var.scss";
+@import "../basement/_spacing.scss";
+@import "../basement/_sizing.scss";
+@import "../basement/_transitions.scss";
+
+@include b(button) {
+  $active-color: mix($rs-dark-modifier, $rs-color-success, $rs-active-modifier-percent) !default;
+  display: flex;
+  border: none;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+  padding: 0 $rs-spacing-tight;
+  text-transform: uppercase;
+  font-size: $rs-font-size-p;
+  font-weight: bold;
+  border-radius: $rs-button-border-radius;
+  min-width: $rs-min-action-input-width;
+  height: $rs-default-tall-input-height;
+  background-color: transparent;
+  cursor: pointer;
+  @include transition(all $rs-expand-transition-length ease);
+
+  .cltooltip {
+    text-transform: none;
+  }
+
+  @include e(content-wrapper) {
+    display: flex;
+    align-items: center;
+  }
+
+  // Not used in VUE.
+  @include e(text-icon-wrapper) {
+    display: flex;
+    align-items: center;
+  }
+
+  @include e(drop-down) {
+    border-radius: 0 $rs-button-border-radius $rs-button-border-radius 0;
+  }
+
+  @include e(caret) {
+    margin-left: $rs-spacing-extra-tight;
+  }
+
+  /** MODIFIERS **/
+
+  @for $index from 1 through length(map_keys($rs-statuses-palette)) {
+    $palette-name: nth(map_keys($rs-statuses-palette), $index);
+
+    @include m(glowing-#{$palette-name}) {
+      animation: pulse-#{$palette-name} 4s infinite;
+    }
+
+    @include m(glowing-color-#{$palette-name}) {
+      animation: pulse-color-#{$palette-name} 4s infinite;
+    }
+  }
+
+  @include m(disabled) {
+    cursor: no-drop !important;
+    animation: none !important;
+  }
+
+  @include m(inverted) {
+    border-width: 1px;
+    border-style: solid;
+    background-color: $rs-color-surface-front !important;
+
+    &:disabled {
+      cursor: no-drop;
+      opacity: 0.6;
+    }
+  }
+
+  @include m(large) {
+    height: $rs-default-tall-input-height;
+
+    @include e(text-icon-wrapper) {
+      padding: $rs-spacing-tight;
+    }
+
+    @include e(drop-down) {
+      background-color: $active-color;
+      padding-left: $rs-spacing-tight;
+      padding-right: $rs-spacing-tight;
+      height: $rs-default-tall-input-height;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  @include m(small) {
+    min-width: calc(#{$rs-min-action-input-width} * 2/3);
+    padding-left: $rs-spacing-tight;
+    padding-right: $rs-spacing-tight;
+    font-size: $rs-font-size-h5;
+  }
+
+  @include m(tiny) {
+    height: $rs-default-input-height;
+    padding-left: $rs-spacing-tight;
+    padding-right: $rs-spacing-tight;
+    font-size: $rs-font-size-h5;
+  }
+
+  @include m(auto) {
+    min-width: auto;
+    padding-left: $rs-spacing-tight;
+    padding-right: $rs-spacing-tight;
+  }
+
+  @include m(auto-width) {
+    min-width: 0;
+  }
+
+  @include m(no-spacing) {
+    padding: 0;
+    margin: 0;
+    min-width: 0;
+  }
+
+  @include m(success) {
+    @include statusModifiers($rs-color-success);
+  }
+
+  @include mm(success disabled) {
+    @include disabledModifiers($rs-color-success);
+  }
+
+  @include mm(success inverted) {
+    border-color: $rs-color-success;
+    color: $rs-color-success;
+    [class^="icn-dp"], [class^="fas "], [class^="fa "], [class^="far "] {
+      color: $rs-color-success;
+    }
+    &:hover:not(.rs-button--disabled) {
+      background-color: $rs-color-success !important;
+      color: $rs-color-surface-base;
+      [class^="icn-dp"], [class^="fas "], [class^="fa "], [class^="far "] {
+        color: $rs-color-surface-base;
+      }
+    }
+  }
+
+  @include mm(success disabled inverted) {
+    background-color: $rs-color-surface-front;
+    color: $rs-color-success;
+    [class^="icn-dp"], [class^="fas "], [class^="fa "], [class^="far "] {
+      color: $rs-color-success;
+    }
+  }
+
+  @for $index from 1 through length(map_keys($rs-tabs-palettes)) {
+    $palette-name: nth(map_keys($rs-tabs-palettes), $index);
+    $palette-color: nth(map_get($rs-tabs-palettes, $palette-name), 1);
+    $palette-background: nth(map_get($rs-tabs-palettes, $palette-name), 2);
+
+    @include m($palette-name) {
+      @include statusModifiers($palette-background);
+      @include get-palette-color($palette-name);
+    }
+
+    @include mm($palette-name disabled) {
+      @include disabledModifiers($palette-background);
+    }
+
+  }
+
+  @include m(primary) {
+    @include statusModifiers($rs-color-primary);
+  }
+
+  @include mm(primary disabled) {
+    @include disabledModifiers($rs-color-primary);
+  }
+
+  @include m(secondary) {
+    @include statusModifiers($rs-color-secondary);
+  }
+
+  @include mm(secondary disabled) {
+    @include disabledModifiers($rs-color-secondary);
+  }
+
+  @include m(surface) {
+    @include statusModifiers($rs-color-surface-top);
+    @include m(blurred) {
+      @include statusModifiers($rs-color-surface-front);
+    }
+  }
+
+  @include mm(surface disabled) {
+    @include disabledModifiers($rs-color-surface-top);
+  }
+
+  @include m(surface-darken) {
+    @include statusModifiers(#232836);
+  }
+
+  @include mm(surface-darken disabled) {
+    @include disabledModifiers(#232836);
+  }
+
+  @include m(error) {
+    @include statusModifiers($rs-color-error);
+  }
+
+  @include mm(error disabled) {
+    @include disabledModifiers($rs-color-error);
+  }
+
+  @include mm(error inverted) {
+    border-color: $rs-color-error;
+    color: $rs-color-error;
+    [class^="icn-dp"], [class^="fas "], [class^="fa "], [class^="far "] {
+      color: $rs-color-error;
+    }
+    &:hover:not(.rs-button--disabled) {
+      background-color: $rs-color-error !important;
+      color: $rs-color-surface-base;
+      [class^="icn-dp"], [class^="fas "], [class^="fa "], [class^="far "] {
+        color: $rs-color-surface-base;
+      }
+    }
+  }
+
+  @include mm(error disabled) {
+    @include disabledModifiers($rs-color-error);
+  }
+
+  @include mm(error disabled inverted) {
+    background-color: $rs-color-surface-front;
+    color: $rs-color-error;
+    [class^="icn-dp"], [class^="fas "], [class^="fa "], [class^="far "] {
+      color: $rs-color-error;
+    }
+  }
+
+  @include m(suggest) {
+    @include statusModifiers($rs-color-primary);
+  }
+
+  @include mm(suggest disabled) {
+    @include disabledModifiers($rs-color-primary);
+  }
+
+  @include mm(suggest inverted) {
+    border-color: $rs-color-primary;
+    color: $rs-color-primary;
+    [class^="icn-dp"], [class^="fas "], [class^="fa "], [class^="far "] {
+      color: $rs-color-primary;
+    }
+    &:hover:not(.rs-button--disabled) {
+      background-color: $rs-color-primary !important;
+      color: $rs-color-surface-base;
+      [class^="icn-dp"], [class^="fas "], [class^="fa "], [class^="far "] {
+        color: $rs-color-surface-base;
+      }
+    }
+  }
+
+  @include mm(suggest disabled) {
+    @include disabledModifiers($rs-color-primary);
+  }
+
+  @include mm(suggest disabled inverted) {
+    background-color: $rs-color-surface-front;
+    color: $rs-color-primary;
+    [class^="icn-dp"], [class^="fas "], [class^="fa "], [class^="far "] {
+      color: $rs-color-primary;
+    }
+  }
+
+  @include m(warn) {
+    @include statusModifiers($rs-color-warning);
+  }
+
+
+  @include mm(warn inverted) {
+    border-color: $rs-color-warning;
+    color: $rs-color-warning;
+    [class^="icn-dp"], [class^="fas "], [class^="fa "], [class^="far "] {
+      color: $rs-color-warning;
+    }
+    &:hover:not(.clbutton--disabled) {
+      background-color: $rs-color-warning !important;
+      color: $rs-color-surface-base;
+      [class^="icn-dp"], [class^="fas "], [class^="fa "], [class^="far "] {
+        color: $rs-color-surface-base;
+      }
+    }
+  }
+
+  @include mm(warn disabled) {
+    @include disabledModifiers($rs-color-warning);
+  }
+
+  @include mm(error disabled inverted) {
+    background-color: $rs-color-surface-front;
+    color: $rs-color-warning;
+    [class^="icn-dp"], [class^="fas "], [class^="fa "], [class^="far "] {
+      color: $rs-color-warning;
+    }
+  }
+
+  @include m(link) {
+    @include e(text) {
+      color: $rs-color-text-primary;
+    }
+
+    @include e(icon) {
+      color: $rs-color-text-secondary;
+    }
+
+    &:hover {
+      @include e(text) {
+        color: $rs-color-text-secondary;
+
+      }
+    }
+
+    &:active {
+      @include e(text) {
+        color: $rs-color-secondary;
+      }
+
+      @include e(icon) {
+        color: $rs-color-secondary;
+      }
+    }
+  }
+
+  @include mm(link disabled) {
+    &, &:hover, &:active {
+      opacity: $rs-disabled-opacity;
+      @include e(text) {
+        color: $rs-color-text-primary;
+      }
+
+      @include e(icon) {
+        color: $rs-color-text-secondary;
+      }
+    }
+
+  }
+
+  @include m(icon-and-text) {
+    display: flex;
+    align-items: center;
+
+    @include e(icon) {
+      margin-right: $rs-spacing-tight;
+    }
+  }
+
+}
+
+@include b(vertical-button-container) {
+
+  @include e(button) {
+    height: $rs-default-input-height;
+    margin: 0 auto;
+  }
+
+  @include e(label) {
+    color: $rs-color-text-secondary;
+    line-height: 1;
+    font-size: $rs-font-size-h6;
+    font-weight: bold;
+    text-align: center;
+    margin-top: calc(#{$rs-spacing-extra-tight} / 2);
+  }
+}

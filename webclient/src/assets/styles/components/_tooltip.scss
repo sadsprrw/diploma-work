@@ -1,0 +1,183 @@
+@include b(tooltip-parent) {
+  position: relative;
+
+  &:hover {
+    @include b(tooltip) {
+      @include transition(opacity $rs-expand-transition-length ease);
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}
+
+@include b(tooltip) {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  font-size: $rs-font-size-h5;
+  background-color: $rs-color-surface-top !important;
+  margin-top: $rs-spacing-tight;
+  z-index: $rs-z-top;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: $rs-popup-border-radius;
+  box-shadow: $rs-box-shadow-base;
+  bottom: 100%;
+  margin-bottom: $rs-spacing-extra-tight;
+  padding: $rs-spacing-extra-tight;
+  @include transition(opacity $rs-expand-transition-length ease, visibility 0s linear $rs-expand-transition-length);
+  @include pseudo-arrow($rs-spacing-extra-tight);
+  font-weight: $rs-font-weight-extra-bold;
+  color: $rs-color-text-primary !important;
+
+  @include m(animated) {
+    transition-property: opacity;
+    transition-duration: 1s;
+  }
+
+  @include m(active) {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  @include m(dark) {
+    background-color: $rs-color-surface-base !important;
+  }
+
+  @include m(left) {
+    margin-bottom: 0;
+    bottom: 50%;
+    left: auto;
+    right: calc(100% + #{$rs-spacing-extra-tight});
+    transform: translateY(50%);
+
+    &::before {
+      right: 0;
+      bottom: 50%;
+      transform: translateY(50%);
+      border-width: $rs-spacing-extra-tight 0 $rs-spacing-extra-tight $rs-spacing-extra-tight;
+      border-color: transparent transparent transparent $rs-color-surface-top !important;
+    }
+  }
+
+  @include m(right) {
+    margin-bottom: 0;
+    bottom: 50%;
+    right: auto;
+    left: calc(100% + #{$rs-spacing-extra-tight});
+    transform: translateY(50%);
+
+    &::before {
+      right: auto;
+      left: -5px;
+      bottom: 50%;
+      transform: translateY(50%);
+      border-width: $rs-spacing-extra-tight $rs-spacing-extra-tight $rs-spacing-extra-tight 0;
+      border-color: transparent $rs-color-surface-top transparent transparent !important;
+    }
+  }
+
+  @include m(bottom) {
+    bottom: auto;
+    top: 100%;
+
+    &::before {
+      bottom: auto;
+      top: -$rs-spacing-extra-tight;
+      border-width: 0 $rs-spacing-extra-tight $rs-spacing-extra-tight $rs-spacing-extra-tight !important;
+      border-color: transparent transparent $rs-color-surface-top  transparent !important;
+    }
+  }
+
+  @include m(arrow-left) {
+    &::before {
+      right: auto;
+      left: 15px;
+    }
+  }
+
+  @include m(arrow-right) {
+    &::before {
+      right: 15px!important;
+      left: auto;
+    }
+  }
+
+  @include m(arrow-right-top) {
+    &::before {
+      right: 15px;
+      left: auto;
+      top: -5px;
+      transform: rotate(180deg);
+    }
+    &::after {
+      top: -3px;
+      transform: rotate(180deg);
+      bottom: auto;
+    }
+  }
+
+  @include m(arrow-left-top) {
+    &::before {
+      bottom: auto;
+      left: 15px;
+      right: auto;
+      top: -5px;
+      transform: rotate(180deg);
+    }
+    &::after {
+      bottom: auto;
+      top: -3px;
+      left: 17px;
+      transform: rotate(180deg);
+    }
+  }
+
+  @include m(arrow-left-bottom) {
+    &::before {
+      top: -5px;
+      left: 15px;
+      right: auto;
+      bottom: auto;
+      border-color: $rs-color-surface-top transparent transparent transparent !important;
+      border-width: $rs-spacing-extra-tight $rs-spacing-extra-tight 0 $rs-spacing-extra-tight !important;
+      transform: rotate(180deg);
+    }
+
+    &::after {
+      top: -3px;
+      left: 15px;
+      right: auto;
+      bottom: auto;
+      border-color: $rs-color-surface-top transparent transparent transparent !important;
+      border-width: $rs-spacing-extra-tight $rs-spacing-extra-tight 0 $rs-spacing-extra-tight !important;
+      transform: rotate(180deg);
+    }
+  }
+
+  @include m(arrow-top) {
+    &::before {
+      right: auto;
+      left: 15px;
+      top: -5px;
+      transform: rotate(180deg);
+    }
+    &::after{
+      top: -3px;
+      transform: rotate(180deg);
+      bottom: auto;
+    }
+  }
+
+  @include m(icon-button) {
+    text-transform: none;
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+  @include m(small) {
+    word-wrap: break-word;
+    white-space: pre-line;
+    line-height: 1.2;
+  }
+}
